@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReducer } from 'react';
-import { addOne, applyNumber, changeOperation, clearDisplay } from '../actions';
+import { addOne, applyNumber, changeOperation, clearDisplay, m1, mR, mC } from '../actions';
 import './App.css';
 import { initialState } from '../reducers';
 import TotalDisplay from './TotalDisplay';
@@ -10,9 +10,9 @@ import reducer from '../reducers';
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const onChange = (evt) => {
+  const onChange = (num) => {
     // console.log(evt.target.value)
-    dispatch(applyNumber(evt.target.value))
+    dispatch(applyNumber(num))
   }
 
   const changeOp = (evt) => {
@@ -21,6 +21,18 @@ function App() {
 
   const handleClearDisplay = () => {
     dispatch(clearDisplay());
+  }
+
+  const clearM = () => {
+    dispatch(m1());
+  }
+
+  const clearMR = () => {
+    dispatch(mR());
+  }
+
+    const clearMC = () => {
+    dispatch(mC());
   }
 
   return (
@@ -40,27 +52,27 @@ function App() {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton onClick={clearM} value={"M+"}/>
+              <CalcButton onClick={clearMR} value={"MR"}/>
+              <CalcButton onClick={clearMC} value={"MC"}/>
             </div>
 
             <div className="row">
-              <CalcButton onClick={onChange} value={1}/>
-              <CalcButton onClick={onChange} value={2}/>
-              <CalcButton onClick={onChange} value={3}/>
+              <CalcButton onClick={() => onChange(1)} value={1}/>
+              <CalcButton onClick={() => onChange(2)} value={2}/>
+              <CalcButton onClick={() => onChange(3)} value={3}/>
             </div>
 
             <div className="row">
-              <CalcButton onClick={onChange} value={4}/>
-              <CalcButton onClick={onChange} value={5}/>
-              <CalcButton onClick={onChange} value={6}/>
+              <CalcButton onClick={() => onChange(4)} value={4}/>
+              <CalcButton onClick={() => onChange(5)} value={5}/>
+              <CalcButton onClick={() => onChange(6)} value={6}/>
             </div>
 
             <div className="row">
-              <CalcButton onClick={onChange} value={7}/>
-              <CalcButton onClick={onChange} value={8}/>
-              <CalcButton onClick={onChange} value={9}/>
+              <CalcButton onClick={() => onChange(7)} value={7}/>
+              <CalcButton onClick={() => onChange(8)} value={8}/>
+              <CalcButton onClick={() => onChange(9)} value={9}/>
             </div>
 
             <div className="row">
